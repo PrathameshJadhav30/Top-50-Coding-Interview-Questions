@@ -7,8 +7,8 @@ int main(){
     printf("Enter a value of n: ");
     scanf("%d",&n);
 
-    //printing the 0th and 1 st term
-    printf("%d , %d",a , b);
+    //printing the 0th  term
+    printf("%d , ", a );
 
     int nextTerm;
 
