@@ -20,8 +20,11 @@ public class Fibonacci_series{
 
             System.out.print(nextTerm + ",");
 
+
         }
+        sc.close();
 
     }
+    
 
 }
