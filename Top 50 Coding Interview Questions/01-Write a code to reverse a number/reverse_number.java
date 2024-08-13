@@ -11,7 +11,7 @@ public class reverse_number
         int number = sc.nextInt();
         System.out.println("Reverse of "+ number + " is ");
 
-        int Reverse = 0;
+        //int Reverse = 0;
         String s ="";
         while(number != 0)
         {
