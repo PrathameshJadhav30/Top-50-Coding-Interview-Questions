@@ -1,7 +1,8 @@
 public class Heap_Sort{
     public static void main(String[] args) {
         int a[] = {12, 11, 13, 5, 6, 7}; 
-        int len = a.length;
+        //int len = a.length;
+        
 
         Heap_Sort ob = new Heap_Sort(); 
         ob.sort(a); 
