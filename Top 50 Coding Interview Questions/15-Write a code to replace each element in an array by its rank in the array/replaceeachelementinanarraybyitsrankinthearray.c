@@ -1,7 +1,7 @@
 #include<stdio.h>
 
 int main(){
-    int arr[] = {100,2,70,12,90,56};
+    int arr[] = { 100,2,70,12,90};
     int n = sizeof(arr)/ sizeof(arr[0]);
 
     int temp[n];
