@@ -1,0 +1,15 @@
+def changeArr(input1):
+
+    newArray = input1.copy()
+    newArray.sort()
+
+    for i in range(len(input1)):
+        for j in range(len(newArray)):
+            if input1[i] == newArray[j]:
+                input1[i] = j + 1;
+                break;
+#Driver code
+arr = [100 , 2 ,70, 12 ,90]
+changeArr(arr)
+#print the array elements
+print(arr)
