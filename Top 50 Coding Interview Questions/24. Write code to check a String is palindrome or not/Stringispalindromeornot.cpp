@@ -1,34 +1,37 @@
-#include<bits/stdc++.h> 
+#include <iostream>
+#include <string>
 using namespace std;
 
-int main()
+// Function to check if a string is palindrome
+bool isPalindrome(string str) {
+    int start = 0;               // Initialize start index
+    int end = str.length() - 1;  // Initialize end index
 
-{
-
-char str1[20], str2[20];
-
-int i, j, len = 0, flag = 0;
-
-cout << "Enter the string : "; 
-gets(str1); len = strlen(str1) - 1; 
-for (i = len, j = 0; i >= 0 ; i--, j++)
-
-str2[j] = str1[i];
-
-if (strcmp(str1, str2))
-
-flag = 1;
-
-if (flag == 1)
-
-cout << str1 << " is not a palindrome";
-
-else
-
-cout << str1 << " is a palindrome";
-
-return 0;
-
+    // Traverse the string from both ends
+    while (start < end) {
+        // If characters at start and end are not equal
+        if (str[start] != str[end]) {
+            return false;  // Not a palindrome
+        }
+        start++;  // Move start index to the right
+        end--;    // Move end index to the left
+    }
+    return true;  // The string is a palindrome
 }
 
- 
+int main() {
+    string str;
+
+    // Input the string
+    cout << "Enter a string: ";
+    cin >> str;
+
+    // Check if the string is a palindrome
+    if (isPalindrome(str)) {
+        cout << "The string is a palindrome." << endl;
+    } else {
+        cout << "The string is not a palindrome." << endl;
+    }
+
+    return 0;
+}
