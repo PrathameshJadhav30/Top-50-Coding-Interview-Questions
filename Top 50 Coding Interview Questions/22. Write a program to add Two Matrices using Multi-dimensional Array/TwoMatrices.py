@@ -1,47 +1,49 @@
-# Function to get matrix input from the user
-def get_matrix(rows, cols, matrix_number):
-    print(f"Enter elements of Matrix {matrix_number}:")
-    matrix = []
-    for i in range(rows):
-        row = []
-        for j in range(cols):
-            value = int(input(f"Element at [{i}][{j}]: "))
-            row.append(value)
-        matrix.append(row)
-    return matrix
-
 # Function to add two matrices
-def add_matrices(matrix1, matrix2, rows, cols):
-    result = []
+def add_matrices(matrix1, matrix2):
+    # Get the number of rows and columns in the matrices
+    rows = len(matrix1)
+    cols = len(matrix1[0])
+
+    # Initialize an empty matrix to store the result
+    result = [[0 for _ in range(cols)] for _ in range(rows)]
+
+    # Loop through each element of the matrices
     for i in range(rows):
-        row = []
         for j in range(cols):
-            row.append(matrix1[i][j] + matrix2[i][j])
-        result.append(row)
-    return result
+            result[i][j] = matrix1[i][j] + matrix2[i][j]  # Add corresponding elements
 
-# Function to display a matrix
-def display_matrix(matrix):
-    for row in matrix:
-        print(" ".join(map(str, row)))
+    return result  # Return the result matrix
 
-# Main function
-def main():
-    # Get dimensions of the matrices
-    rows = int(input("Enter the number of rows: "))
-    cols = int(input("Enter the number of columns: "))
+# Input: Get the number of rows and columns from the user
+rows = int(input("Enter the number of rows: "))
+cols = int(input("Enter the number of columns: "))
 
-    # Input the two matrices
-    matrix1 = get_matrix(rows, cols, 1)
-    matrix2 = get_matrix(rows, cols, 2)
+# Initialize two matrices to store user input
+matrix1 = []
+matrix2 = []
 
-    # Add the two matrices
-    sum_matrix = add_matrices(matrix1, matrix2, rows, cols)
+# Get input for the first matrix
+print("Enter the elements of the first matrix:")
+for i in range(rows):
+    row = []
+    for j in range(cols):
+        row.append(int(input(f"Enter element [{i+1},{j+1}] of matrix 1: ")))
+    matrix1.append(row)
 
-    # Display the result
+# Get input for the second matrix
+print("Enter the elements of the second matrix:")
+for i in range(rows):
+    row = []
+    for j in range(cols):
+        row.append(int(input(f"Enter element [{i+1},{j+1}] of matrix 2: ")))
+    matrix2.append(row)
+
+# Ensure both matrices are of the same dimensions
+if len(matrix1) == len(matrix2) and len(matrix1[0]) == len(matrix2[0]):
+    # Call the function to add the matrices and print the result
+    result_matrix = add_matrices(matrix1, matrix2)
     print("The sum of the matrices is:")
-    display_matrix(sum_matrix)
-
-# Run the main function
-if __name__ == "__main__":
-    main()
+    for row in result_matrix:
+        print(row)  # Print each row of the result matrix
+else:
+    print("Matrices cannot be added due to dimension mismatch.")
