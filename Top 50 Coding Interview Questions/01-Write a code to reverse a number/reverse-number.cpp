@@ -1,21 +1,27 @@
-//Reverse of a number
-#include<bits/stdc++.h>
-
+#include <iostream>
 using namespace std;
-//main program
-int main(){
-    //variables initialization
-    int num,reverse = 0,rem;
-    cout<<"Enter a number: ";
-    //user input
-    cin>>num;
-    //loop to find reverse number
-    do{
-        rem = num%10;
-        reverse = reverse * 10 +rem;
-        num/=10;
-    }while(num != 0);
-    //output
-    cout<<"Reversed number: "<<reverse;
+
+// Function to reverse a number
+int reverseNumber(int num) {
+    int reversed = 0; // Variable to store the reversed number
+
+    // Loop to extract digits and build the reversed number
+    while (num != 0) {
+        int digit = num % 10;    // Extract the last digit
+        reversed = reversed * 10 + digit; // Add the digit to the reversed number
+        num /= 10;               // Remove the last digit
+    }
+
+    return reversed; // Return the reversed number
+}
+
+int main() {
+    int num;
+    cout << "Enter a number: ";
+    cin >> num;
+
+    // Call the function and display the reversed number
+    cout << "The reversed number is: " << reverseNumber(num) << endl;
+
     return 0;
 }
