@@ -1,26 +1,38 @@
-#include<bits/stdc++.h>
-
+#include <iostream>
 using namespace std;
 
-int main(){
-    int num;
-    int a = 0, b = 1;
-    //Taking value of Num from user
-    cout<<"Enter a value of num: ";
-    cin>>num;
+// Function to print Fibonacci series up to the nth term
+void printFibonacci(int n) {
+    // Initialize the first two terms of the Fibonacci series
+    int t1 = 0, t2 = 1, nextTerm;
 
-    //Here we are printing 0th and 1st term
-    cout << a << ","<< b << ", ";
-
-    int nextTerm;
-
-    //printing the rest of the terms here
-    for(int i = 2; i < num;i++){
-        nextTerm = a + b;
-        a = b;
-        b = nextTerm;
-
-        cout << nextTerm << ", ";
+    // Edge cases: If n is less than 1, there's no series
+    if (n <= 0) {
+        cout << "Please enter a positive integer." << endl;
+        return;
     }
+
+    cout << "Fibonacci Series: ";
+
+    // Print the Fibonacci series
+    for (int i = 1; i <= n; ++i) {
+        cout << t1 << " "; // Print the current term
+        nextTerm = t1 + t2; // Calculate the next term
+        t1 = t2; // Update t1 to t2
+        t2 = nextTerm; // Update t2 to the new term
+    }
+    cout << endl;
+}
+
+int main() {
+    int n;
+
+    // Prompt user for the number of terms
+    cout << "Enter the number of terms: ";
+    cin >> n;
+
+    // Call the function to print Fibonacci series
+    printFibonacci(n);
+
     return 0;
 }
