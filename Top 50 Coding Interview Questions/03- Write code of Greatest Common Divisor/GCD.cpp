@@ -1,36 +1,30 @@
-//GCD of Two Numbers
-#include<bits/stdc++.h>
-
+#include <iostream>
 using namespace std;
-//Recursive function declaration
-int findGCD(int ,int);
-//main program
-int main()
-{
-    int first,second;
-    cout<<"Enter first Number: ";
-    cin>>first;
-    cout<<"Enter second Number: ";
-    cin>>second;
-    cout<<"GCD of "<<first<<" And "<<second <<" is "<<findGCD(first,second);
-    return 0;
+
+// Function to calculate GCD using the Euclidean algorithm
+int findGCD(int a, int b) {
+    // Ensure the inputs are non-negative
+    if (a < 0) a = -a;
+    if (b < 0) b = -b;
+
+    // Loop until one of the numbers becomes zero
+    while (b != 0) {
+        int remainder = a % b; // Find the remainder of a divided by b
+        a = b;                 // Assign b to a
+        b = remainder;         // Assign remainder to b
+    }
+    return a; // GCD is the last non-zero value of a
 }
-//body of the fuction
-int findGCD(int first, int second){
-    //0 is divisible by every number
-    if(first == 0){
-        return second;
-    }
-    if (second == 0){
-        return first;
-    }
-    //both numbers are equal
-    if(first == second){
-        return first;
-    }
-    //first is greater
-    else if(first > second){
-        return findGCD(first - second,second);
-    }
-    return findGCD(first, second - first);
+
+int main() {
+    int num1, num2;
+
+    // Input two integers from the user
+    cout << "Enter two integers: ";
+    cin >> num1 >> num2;
+
+    // Calculate and display the GCD
+    cout << "GCD of " << num1 << " and " << num2 << " is " << findGCD(num1, num2) << endl;
+
+    return 0;
 }

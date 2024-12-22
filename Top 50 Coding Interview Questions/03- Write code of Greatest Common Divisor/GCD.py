@@ -1,15 +1,20 @@
+# Function to calculate GCD using the Euclidean algorithm
+def find_gcd(a, b):
+    """
+    Calculates the Greatest Common Divisor (GCD) of two numbers using the Euclidean algorithm.
+    """
+    # Ensure the inputs are non-negative
+    a, b = abs(a), abs(b)
 
-num1 = int(input("Enter First Number: "))
-num2 = int(input("Enter Second Number: "))
+    # Loop until one of the numbers becomes zero
+    while b != 0:
+        a, b = b, a % b  # Update a with b and b with the remainder
 
-def gcdFunction(num1, num2):
-    if num1 > num2:
-        small = num2
-    else:
-        small = num1
-    for i in range(1, small +1):
-        if(num1 % i ==0) and (num2 % i ==0):
-            gcd = i
-    print("GCD of two number: {}".format(gcd))
+    return a  # GCD is the last non-zero value of a
 
-gcdFunction(num1 , num2)
+# Input two integers from the user
+num1 = int(input("Enter the first integer: "))
+num2 = int(input("Enter the second integer: "))
+
+# Calculate and display the GCD
+print(f"GCD of {num1} and {num2} is {find_gcd(num1, num2)}")
