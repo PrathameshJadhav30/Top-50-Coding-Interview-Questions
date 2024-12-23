@@ -1,33 +1,48 @@
-#include<iostream>
+#include <iostream> // Include necessary library for input/output
+#include <vector>   // Include vector library to handle arrays
+#include <string>   // Include string library for palindrome checks
 using namespace std;
 
-int ispalindrome(int n){
-    int rev = 0; temp = n;
+// Function to check if a number is a palindrome
+bool isPalindrome(int num) {
+    string str = to_string(num); // Convert number to string
+    int left = 0, right = str.size() - 1;
 
-    while(temp > 0){
-        int rem = rem % 10;
-        rev = rev*10 + rem;
-        temp / = 10;
+    // Check if the string reads the same forward and backward
+    while (left < right) {
+        if (str[left] != str[right]) {
+            return false; // Not a palindrome
+        }
+        left++;
+        right--;
     }
-
-    if(n == rev) 
-       return 1;
-
-    return 0;
+    return true; // Is a palindrome
 }
-int main(){
-    int arr[] = {1, 121, 5551, 5455554, 10111, 90};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int res = INT_MIN;
 
-    for(int i = 0; i < n; i++){
-        if(ispalindrome(arr[i]) && res < arr[i])
-          res = arr[i];
+// Function to find the longest palindrome in an array
+int findLongestPalindrome(const vector<int>& arr) {
+    int longestPalindrome = -1; // Variable to store the longest palindrome
+    for (int num : arr) {
+        if (isPalindrome(num)) {
+            // Check if the current palindrome is longer than the previous
+            if (longestPalindrome == -1 || to_string(num).size() > to_string(longestPalindrome).size()) {
+                longestPalindrome = num;
+            }
+        }
+    }
+    return longestPalindrome;
+}
 
+// Main function
+int main() {
+    vector<int> arr = {121, 123, 454, 12, 78987, 678}; // Example array
+    int longestPalindrome = findLongestPalindrome(arr);
+
+    if (longestPalindrome != -1) {
+        cout << "The longest palindrome in the array is: " << longestPalindrome << endl;
+    } else {
+        cout << "No palindrome found in the array." << endl;
     }
 
-    if( res == INT_MIN)
-      res = -1;
-
-    cout << res;
+    return 0; // Return 0 to indicate successful execution
 }

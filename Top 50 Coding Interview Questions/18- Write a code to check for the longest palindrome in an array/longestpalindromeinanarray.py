@@ -1,36 +1,44 @@
-# Function to check if n is palindrome
-def isPalindrome(n):
+# Function to check if a number is a palindrome
+def is_palindrome(num):
+    """
+    Checks if a number is a palindrome.
 
-   divisor = 1
-   while (int(n / divisor) >= 10):
-      divisor *= 10
+    Args:
+        num (int): The number to check.
 
-   while (n != 0):
-      leading = int(n / divisor)
-      trailing = n % 10
-  
-      if (leading != trailing):
-        return False
+    Returns:
+        bool: True if the number is a palindrome, False otherwise.
+    """
+    str_num = str(num)  # Convert the number to a string
+    return str_num == str_num[::-1]  # Check if the string is the same when reversed
 
-      n = int((n % divisor) / 10)
+# Function to find the longest palindrome in an array
+def find_longest_palindrome(arr):
+    """
+    Finds the longest palindrome in an array.
 
-      divisor = int(divisor / 100)
-   return True
+    Args:
+        arr (list): List of integers.
 
-# Function to find the largest palindromic element
-def largestPalindrome(arr, n):
-   currentMax = -1
+    Returns:
+        int: The longest palindrome in the array. Returns -1 if no palindrome is found.
+    """
+    longest_palindrome = -1  # Initialize the longest palindrome as -1 (no palindrome found)
 
-   for i in range(0, n, 1):
-      if (arr[i] > currentMax and isPalindrome(arr[i])):
-         currentMax = arr[i]
+    for num in arr:
+        if is_palindrome(num):
+            # Check if the current palindrome is longer than the previous one
+            if longest_palindrome == -1 or len(str(num)) > len(str(longest_palindrome)):
+                longest_palindrome = num
 
-   return currentMax
+    return longest_palindrome
 
-# Driver Code
+# Example array
+arr = [121, 123, 454, 12, 78987, 678]
 
-arr = [1, 232, 5545455, 909090, 161]
-n = len(arr)
-
-# print required answer
-print(largestPalindrome(arr, n))
+# Find and display the longest palindrome in the array
+longest_palindrome = find_longest_palindrome(arr)
+if longest_palindrome != -1:
+    print(f"The longest palindrome in the array is: {longest_palindrome}")
+else:
+    print("No palindrome found in the array.")
