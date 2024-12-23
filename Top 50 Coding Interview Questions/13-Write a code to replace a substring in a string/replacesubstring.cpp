@@ -1,52 +1,36 @@
-//Replace a Substring in a String
-#include<iostream> 
-#include<string.h> 
+#include <iostream> // Include necessary library for input/output
+#include <string>   // Include string library for string manipulation
 using namespace std;
-void replaceSubstring(char st[],char sub[],char new_str[])//Function to replace substring.
-{
-    int stLen,subLen,newLen;
-    int i=0,j,k;
-    int flag=0,start,end;
-    stLen=strlen(st);
-    subLen=strlen(sub);
-    newLen=strlen(new_str);
-    for(i=0;i<stLen;i++)//Finding substring.
-    {
-        flag=0;
-        start=i;
-        for(j=0;st[i]==sub[j];j++,i++)
-            if(j==subLen-1)
-                flag=1;
-        end=i;
-        if(flag==0)
-            i-=j;
-        else
-        {
-            for(j=start;j<end;j++)
-            {
-                for(k=start;k<stLen;k++)
-                    st[k]=st[k+1];
-                stLen--;
-                i--;
-            }
-            for(j=start;j<start+newLen;j++)//Replacing suv string with the input string           
-             {                
-               for(k=stLen;k>=j;k--)
-                    st[k+1]=st[k];
-                st[j]=new_str[j-start];
-                stLen++;
-                i++;
-            }
-        }
+
+// Function to replace a substring in a string
+string replaceSubstring(const string& original, const string& toReplace, const string& replacement) {
+    string result = original; // Create a copy of the original string
+    size_t pos = result.find(toReplace); // Find the first occurrence of the substring to replace
+
+    // Loop to replace all occurrences of the substring
+    while (pos != string::npos) {
+        result.replace(pos, toReplace.length(), replacement); // Replace the substring
+        pos = result.find(toReplace, pos + replacement.length()); // Find the next occurrence
     }
+
+    return result; // Return the modified string
 }
-//Main function.
-int main() 
-{
-    char st[100] = "prathamesh",sub[100] = "mesh",new_str[100]="star ";
-    
-    replaceSubstring(st,sub,new_str); //Calling created function.
-    //Printing result using called function.
-    cout<<"The string after replacing substring: "<<st<<endl;
-    return 0;
+
+// Main function
+int main() {
+    string original, toReplace, replacement;
+
+    // Input strings from the user
+    cout << "Enter the original string: ";
+    getline(cin, original);
+    cout << "Enter the substring to replace: ";
+    getline(cin, toReplace);
+    cout << "Enter the replacement substring: ";
+    getline(cin, replacement);
+
+    // Replace the substring and display the result
+    string modifiedString = replaceSubstring(original, toReplace, replacement);
+    cout << "Modified string: " << modifiedString << endl;
+
+    return 0; // Return 0 to indicate successful execution
 }
