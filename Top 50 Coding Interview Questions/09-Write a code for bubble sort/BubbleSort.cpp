@@ -1,43 +1,49 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-void swap(int *var1, int *var2)
-{
-int temp = *var1;
-*var1 = *var2;
-*var2 = temp;
+// Function to perform Bubble Sort
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+
+    // Outer loop for each pass through the array
+    for (int i = 0; i < n - 1; i++) {
+        // Flag to check if any swapping occurred in this pass
+        bool swapped = false;
+
+        // Inner loop for comparing adjacent elements
+        for (int j = 0; j < n - i - 1; j++) {
+            // Swap if the current element is greater than the next element
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+                swapped = true; // Mark as swapped
+            }
+        }
+
+        // If no swapping occurred, the array is already sorted
+        if (!swapped) {
+            break;
+        }
+    }
 }
-//Here we will implement bubbleSort.
-void bubbleSort(int arr[], int n)
-{
-int i, j;
-for (i = 0; i < n-1; i++)
-//Since, after each iteration rightmost i elements are sorted.
-for (j = 0; j < n-i-1; j++) if (arr[j] > arr[j+1])
-swap(&arr[j], &arr[j+1]);
-}
-// Function to print array.
-void display(int arr[], int size)
-{
-int i;
-for (i=0; i < size; i++)
-cout << arr[i] << "\t";
 
-cout<<endl;
-}
-//Main function to run the program.
-int main()
-{
-int array[] = {5, 3, 1, 9, 8, 2, 4,7};
-int size = sizeof(array)/sizeof(array[0]);
+// Main function to test Bubble Sort
+int main() {
+    vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
 
-cout<<"Before bubble sort: \n";
-display(array, size);//Calling display function to print unsorted array.
+    cout << "Original array: ";
+    for (int x : arr) {
+        cout << x << " ";
+    }
+    cout << endl;
 
-bubbleSort(array, size);
+    bubbleSort(arr);
 
-cout<<"After bubble sort: \n";
-display(array, size);//Calling display function to print sorted array.
+    cout << "Sorted array: ";
+    for (int x : arr) {
+        cout << x << " ";
+    }
+    cout << endl;
 
-return 0;
+    return 0;
 }
