@@ -1,40 +1,29 @@
-#include <iostream>   // For input and output
-#include <string>     // For string manipulation
+#include <bits/stdc++.h> // Includes all standard libraries in C++ for faster implementation
 using namespace std;
 
-int main() {
-    // Declare variables for input string, substring, replacement, and output string
-    string str, substr, replace, output;
-    int start = -1; // Variable to store the starting index of the substring, initialized to -1 (not found)
+// Function to sort the array in ascending order
+void sorted(int arr[], int n) {
 
-    // Take input from the user
-    cout << "Enter the main string: ";
-    getline(cin, str); // Read the entire line as input
-    cout << "Enter the substring to replace: ";
-    getline(cin, substr);
-    cout << "Enter the replacement string: ";
-    getline(cin, replace);
-
-    // Find the starting position of the substring
-    size_t pos = str.find(substr); // Use `find` function to locate the substring
-    if (pos != string::npos) {    // If substring is found
-        start = pos;              // Store the starting position
-
-        // Copy the portion of the string before the substring
-        output = str.substr(0, start);
-
-        // Append the replacement string
-        output += replace;
-
-        // Append the portion of the string after the substring
-        output += str.substr(start + substr.length());
-
-        // Display the final string
-        cout << "Output: " << output << endl;
-    } else {
-        // If substring is not found, display an appropriate message
-        cout << "\"" << substr << "\" is not a substring of \"" << str << "\"" << endl;
+    // Nested loop for sorting using the bubble sort algorithm
+    for (int i = 0; i < n - 1; i++) {         // Outer loop to iterate through all elements
+        for (int j = i + 1; j < n; j++) {     // Inner loop to compare elements with the current element
+            if (arr[i] > arr[j]) {            // Swap if the current element is greater than the compared element
+                int temp = arr[i];           // Temporary variable to hold the value during swap
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
     }
 
-    return 0; // Exit the program
+    // Loop to print the sorted array
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";                // Output each element of the sorted array
+}
+
+int main() {
+
+    int arr[] = {10, 89, 67, 45, 83, 9, 12};   // Initialize the array to be sorted
+    int n = sizeof(arr) / sizeof(arr[0]);     // Calculate the number of elements in the array
+
+    sorted(arr, n);                           // Call the sorting function
 }
