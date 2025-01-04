@@ -21,6 +21,6 @@ def Fibo(n):
         return Fibo(n - 1) + Fibo(n - 2)
 
 
-# Main Program (without if __name__ == "__main__":)
+# Main Program
 n = 9
 print(f"The {n}th Fibonacci number is: {Fibo(n)}")
